@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<title>Verifo | Mail Checker</title>
+
+
+	<script>
+			$(document).ready(function(){
+							$('#f1').on('submit', e => {
+							e.preventDefault();
+							 $.post('/', $('#f1').serialize()).done(data => {
+									 if(data.valid && data.verified ){
+										 document.getElementById("maincontainer").innerHTML = '<div class="row center-align ">			<div class="col s12 m12 card  "><h3 class="green-text">Mail Address Exists!</h3><div class="container indigo-text darken-4">			<div style="float:left;" >						<h5 >Provider : '+data.provider+'</h5><h5>Domain : '+data.domain+'</h5>					</div>					<div style="float:right;">						<h5 >Mail: '+data.email+'</h5><h5>SMTP-Status : '+data['smtp-status']+'</h5>					</div></div>			</div>		</div>'
+									 }
+									 else{
+										document.getElementById("maincontainer").innerHTML = '<div class="row center-align ">			<div class="col s12 m12 card  "><h3 class="red-text">Not Exist!!!</h3></div>			</div>'
+									 }
+							 });
+							 
+						});
+			});
+	</script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row center-align">
+			<h1 class="indigo-text darken-4">Verifo</h1>
+		</div>
+		<div class="row">
+			<div class="col s12 m12">
+				<div class="card blue darken-1">
+					<div class="card-content white-text">
+						<span class="card-title center-align">Enter mail Address, Which to be Verify!!</span>
+						<form id="f1">
+							<input id="email" name="getEmail" type="email" class="validate" placeholder="Enter Mail Address to Verify" required="required">		
+						</form>
+						<button form="f1" id="sb1" class="col s12 m12 waves-effect waves-light btn amber darken-2">Verify it</button>
+					</div>
+					<br>
+					<br>
+					<br>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="maincontainer" class="container  ">
+		
+
+	</div>
+</body>
+
+</html>

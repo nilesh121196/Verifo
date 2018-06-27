@@ -1,0 +1,32 @@
+{
+  "name": "emailvalidator",
+  "version": "1.0.0",
+  "description": "Using this tool, one can find that an email id is exist or not, in realtime.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nilesh121196/EmailValidator.git"
+  },
+  "keywords": [
+    "email",
+    "validator"
+  ],
+  "author": "Nilesh Mittal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nilesh121196/EmailValidator/issues"
+  },
+  "homepage": "https://github.com/nilesh121196/EmailValidator#readme",
+  "dependencies": {
+    "ajax": "latest",
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "mailgun-js": "latest",
+    "request": "latest"
+  }
+}
