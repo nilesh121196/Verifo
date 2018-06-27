@@ -13,12 +13,18 @@
 							$('#f1').on('submit', e => {
 							e.preventDefault();
 							 $.post('/', $('#f1').serialize()).done(data => {
-									 if(data.valid && data.verified ){
-										 document.getElementById("maincontainer").innerHTML = '<div class="row center-align ">			<div class="col s12 m12 card  "><h3 class="green-text">Mail Address Exists!</h3><div class="container indigo-text darken-4">			<div style="float:left;" >						<h5 >Provider : '+data.provider+'</h5><h5>Domain : '+data.domain+'</h5>					</div>					<div style="float:right;">						<h5 >Mail: '+data.email+'</h5><h5>SMTP-Status : '+data['smtp-status']+'</h5>					</div></div>			</div>		</div>'
+									 
+									 if(data.valid && data.verified){
+										document.getElementById("maincontainer").innerHTML = '<div class="row center-align ">			<div class="col s12 m12 card  "><h3 class="green-text">Mail Address Exists!</h3><div class="container indigo-text darken-4">			<div style="float:left;" >						<h5 >Provider : '+data.provider+'</h5><h5>Domain : '+data.domain+'</h5>					</div>					<div style="float:right;">						<h5 >Mail: '+data.email+'</h5><h5>SMTP-Status : '+data['smtp-status']+'</h5>					</div></div>			</div>		</div>'
 									 }
 									 else{
-										document.getElementById("maincontainer").innerHTML = '<div class="row center-align ">			<div class="col s12 m12 card  "><h3 class="red-text">Not Exist!!!</h3></div>			</div>'
-									 }
+										if(data.validFormat && data.deliverable ){
+											document.getElementById("maincontainer").innerHTML = '<div class="row center-align ">			<div class="col s12 m12 card  "><h3 class="green-text">Mail Address Exists!</h3><div class="container indigo-text darken-4">			<div style="float:left;" >						<h5 >Provider : '+data.domain+'</h5><h5>Domain : '+data.domain+'</h5>					</div>					<div style="float:right;">						<h5 >Mail: '+data.address+'</h5><h5>SMTP-Status : ok </h5>					</div></div>			</div>		</div>'
+										}
+										else{
+											document.getElementById("maincontainer").innerHTML = '<div class="row center-align ">			<div class="col s12 m12 card  "><h3 class="red-text">Not Exist!!!</h3></div>			</div>'
+										}
+									}
 							 });
 							 
 						});
