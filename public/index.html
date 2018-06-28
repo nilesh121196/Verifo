@@ -12,16 +12,22 @@
 			$(document).ready(function(){
 							$('#f1').on('submit', e => {
 							e.preventDefault();
+							document.getElementById("maincontainer").innerHTML = '';
+							$('#loaderDiv').show();
+							
 							 $.post('/', $('#f1').serialize()).done(data => {
 									 
 									 if(data.valid && data.verified){
+									 	$('#loaderDiv').hide();
 										document.getElementById("maincontainer").innerHTML = '<div class="row center-align ">			<div class="col s12 m12 card  "><h3 class="green-text">Mail Address Exists!</h3><div class="container indigo-text darken-4">			<div style="float:left;" >						<h5 >Provider : '+data.provider+'</h5><h5>Domain : '+data.domain+'</h5>					</div>					<div style="float:right;">						<h5 >Mail: '+data.email+'</h5><h5>SMTP-Status : '+data['smtp-status']+'</h5>					</div></div>			</div>		</div>'
 									 }
 									 else{
 										if(data.validFormat && data.deliverable ){
+											$('#loaderDiv').hide();
 											document.getElementById("maincontainer").innerHTML = '<div class="row center-align ">			<div class="col s12 m12 card  "><h3 class="green-text">Mail Address Exists!</h3><div class="container indigo-text darken-4">			<div style="float:left;" >						<h5 >Provider : '+data.domain+'</h5><h5>Domain : '+data.domain+'</h5>					</div>					<div style="float:right;">						<h5 >Mail: '+data.address+'</h5><h5>SMTP-Status : ok </h5>					</div></div>			</div>		</div>'
 										}
 										else{
+											$('#loaderDiv').hide();
 											document.getElementById("maincontainer").innerHTML = '<div class="row center-align ">			<div class="col s12 m12 card  "><h3 class="red-text">Not Exist!!!</h3></div>			</div>'
 										}
 									}
@@ -30,6 +36,38 @@
 						});
 			});
 	</script>
+	<style>
+
+			.foot {
+              text-align: center;
+              height: 6.5vh;
+              position: relative;
+              width: 100%;
+              bottom: 0;
+         	 }
+
+			.loader {
+			  border: 16px solid #f3f3f3;
+			  border-radius: 50%;
+			  border-top: 16px solid #3498db;
+
+			  width: 90px;
+			  height: 90px;
+			  -webkit-animation: spin 2s linear infinite; /* Safari */
+			  animation: spin 2s linear infinite;
+			}
+
+			/* Safari */
+			@-webkit-keyframes spin {
+			  0% { -webkit-transform: rotate(0deg); }
+			  100% { -webkit-transform: rotate(360deg); }
+			}
+
+			@keyframes spin {
+			  0% { transform: rotate(0deg); }
+			  100% { transform: rotate(360deg); }
+			}
+	</style>
 </head>
 
 <body>
@@ -56,10 +94,30 @@
 		</div>
 	</div>
 
-	<div id="maincontainer" class="container  ">
+	<div class="container " id="loaderDiv" hidden="hidden">
+			<div class="row center-align">
+				<center><div class="loader "></div></center>		
+			</div>
 		
 
 	</div>
+	
+	<div id="maincontainer" class="container  "></div>
+
+
+	<div class="container">
+		<div class="row center-align">
+			<h3 class="black-text">Looking to <b>verify an email?</b></h3>
+			<p><b>Verifo </b>is a email verification tool actually connects to the mail server 
+				and <br/>checks whether the mailbox exists or not.</p>
+		</div>
+	</div>
+
+<br>
+
+<div class="foot blue darken-1 ">
+            <center><h6 style="position: relative; padding-top: 10px; color: black">Developed by <a href="#" class="white-text"><strong>Nilesh & Team</strong></a> </h6></center>
+        </div>
 </body>
 
 </html>
