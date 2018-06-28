@@ -5,6 +5,8 @@ var request = require('request');
 var path = require('path');
 const bodyParser = require('body-parser');
 
+app.use(bodyParser.json())
+
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -28,8 +30,9 @@ app.post('/', (req, res1) => {
                 { form: params },
                 function (error, response, body) {
                     if (!error && response.statusCode == 200) {
-                        var result = JSON.parse(body);
-                        res.json(result)
+                         var result = JSON.parse(body);
+                         res1.json(result)
+                        
                     }
                     else
                     {
@@ -41,6 +44,7 @@ app.post('/', (req, res1) => {
                     }
                 }
             );
+
 
 });
 
