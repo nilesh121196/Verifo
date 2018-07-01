@@ -32,7 +32,6 @@ app.post('/', (req, res1) => {
                     if (!error && response.statusCode == 200) {
                          var result = JSON.parse(body);
                          res1.json(result)
-                        
                     }
                     else
                     {
